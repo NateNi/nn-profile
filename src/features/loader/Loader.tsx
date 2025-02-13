@@ -1,34 +1,37 @@
 import React, { useEffect } from "react";
-import './loader.css';
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { hideLoader, showLoader } from "../../store/slices/loaderSlice";
+import "./loader.css";
 
-function Loader() {
+const Loader: React.FC = () => {
+  const dispatch = useDispatch();
+  const showElement = useSelector((state: RootState) => state.loader.visible);
 
-    const [showElement, setShowElement] = React.useState(true);
-    useEffect(() => {
-        setTimeout(function () {
-        setShowElement(false);
-        }, 5000);
-    }, []);
+  useEffect(() => {
+    dispatch(showLoader());
+    const timer = setTimeout(() => {
+      dispatch(hideLoader());
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [dispatch]);
 
   return (
     <div>
-    {showElement ? (
+      {showElement ? (
         <div className="loaderContainer">
-        <div className="wrapper">
-          <div className="loader">
-          </div>
-          <div className="activeLoaderContainer">
+          <div className="wrapper">
+            <div className="loader"></div>
+            <div className="activeLoaderContainer">
               <div className="keyboardLoader"></div>
               <div className="handLeft"></div>
               <div className="handRight"></div>
+            </div>
           </div>
         </div>
-      </div>
-    ) : (
-        <div></div>
-      )}
+      ) : null}
     </div>
   );
-}
+};
 
 export default Loader;
