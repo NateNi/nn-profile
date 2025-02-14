@@ -1,5 +1,5 @@
 import "./App.css"
-import Loader from "./features/loader/Loader"
+import Loader from "./components/loader/Loader"
 
 const App = () => {
   return (

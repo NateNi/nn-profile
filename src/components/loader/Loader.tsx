@@ -1,20 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/store";
-import { hideLoader, showLoader } from "../../store/slices/loaderSlice";
+import { RootState } from "../../redux/store";
 import "./loader.css";
 
 const Loader: React.FC = () => {
   const dispatch = useDispatch();
   const showElement = useSelector((state: RootState) => state.loader.visible);
 
-  useEffect(() => {
-    dispatch(showLoader());
-    const timer = setTimeout(() => {
-      dispatch(hideLoader());
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(showLoader());
+  //   const timer = setTimeout(() => {
+  //     dispatch(hideLoader());
+  //   }, 5000);
+  //   return () => clearTimeout(timer);
+  // }, [dispatch]);
 
   return (
     <div>
