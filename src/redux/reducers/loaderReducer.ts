@@ -5,7 +5,7 @@ interface LoaderState {
 }
 
 const initialState: LoaderState = {
-    visible: false
+    visible: true
 };
 
 const loaderSlice = createSlice({

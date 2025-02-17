@@ -1,12 +1,10 @@
-import "./App.css"
-import Loader from "./components/loader/Loader"
+import "./App.css";
+import { Loader } from "./components/loader";
 
-const App = () => {
+export const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
         <Loader />
-      </header>
     </div>
   )
 }
