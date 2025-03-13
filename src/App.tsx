@@ -1,4 +1,4 @@
-import "./App.css";
+import "./index.css";
 import { Loader } from "./components/loader";
 import { Projects } from "./components/projects";
 

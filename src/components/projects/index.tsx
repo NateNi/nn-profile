@@ -51,9 +51,11 @@ export const Projects: FC = () => {
           </Typography>
           <Stack direction="row" spacing={1}>
           {largeProjects.map((project) => (
-            <Card variant="outlined" sx={{ width: '332px', borderRadius: '12px'  }}>
-              <img src={project['images'][0]} className="projectsScreenshot"/>
-              <Divider />
+            <Card variant="outlined" sx={{ width: '332px', borderRadius: '12px', border: '10px solid #FF7A59'  }}>
+              <Box sx={{backgroundColor: '#f6b643', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '14px'}}>
+                <img src={project['images'][0]} className="projectsScreenshot"/>
+              </Box>
+              <Divider sx={{border: '6px solid #FF7A59'}}/>
               <Box sx={{ p: 2 }}>
                 <Typography gutterBottom variant="body2">
                   {project['title']}
