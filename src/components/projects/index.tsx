@@ -8,6 +8,7 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
+import Carousel from 'react-material-ui-carousel'
 import "./projects.css";
 import JSCreate from './images/jobScraper/create.png';
 import HUIIntro from './images/hingeUI/intro.png';
@@ -45,33 +46,45 @@ export const Projects: FC = () => {
   return (
     <div>
       {projectsVisibility ? (
-        <Box className="projectsContainer">
+        <Box className="projectsContainer" sx={{width: '100%'}}>
           <Typography gutterBottom variant="body2">
             Large Projects
           </Typography>
-          <Stack direction="row" spacing={1}>
-          {largeProjects.map((project) => (
-            <Card variant="outlined" sx={{ width: '332px', borderRadius: '12px', border: '10px solid #FF7A59'  }}>
-              <Box sx={{backgroundColor: '#f6b643', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '14px'}}>
-                <img src={project['images'][0]} className="projectsScreenshot"/>
+          <Box sx={{width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <Carousel
+              autoPlay = {false}
+              animation="slide"
+              duration="450"
+              navButtonsAlwaysVisible={true}
+              sx={{width: "500px"}}
+            >
+            {largeProjects.map((project) => (
+              <Box sx={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+              <Card variant="outlined" sx={{ width: '332px', borderRadius: '12px', border: '10px solid #FF7A59', height: '450px', display: 'flex', flexDirection: 'column'  }}>
+                <Box sx={{backgroundColor: '#f6b643', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '14px'}}>
+                  <img src={project['images'][0]} className="projectsScreenshot"/>
+                </Box>
+                <Divider sx={{border: '6px solid #FF7A59'}}/>
+                <Box sx={{ p: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', flexGrow: 1 }}>
+                  <Box>
+                  <Typography gutterBottom variant="h4">
+                    {project['title']}
+                  </Typography>
+                  <Typography gutterBottom variant="body2">
+                    {project['description']}
+                  </Typography>
+                  </Box>
+                  <Stack direction="row" spacing={1}>
+                    {project['techStack'].map((tech) => (
+                      <Chip color="primary" label={tech} size="small" />
+                    ))}
+                  </Stack>
+                </Box>
+              </Card>
               </Box>
-              <Divider sx={{border: '6px solid #FF7A59'}}/>
-              <Box sx={{ p: 2 }}>
-                <Typography gutterBottom variant="body2">
-                  {project['title']}
-                </Typography>
-                <Typography gutterBottom variant="body2">
-                  {project['description']}
-                </Typography>
-                <Stack direction="row" spacing={1}>
-                  {project['techStack'].map((tech) => (
-                    <Chip color="primary" label={tech} size="small" />
-                  ))}
-                </Stack>
-              </Box>
-            </Card>
-          ))}
-          </Stack>
+            ))}
+            </Carousel>
+          </Box>
           <Typography gutterBottom variant="body2">
             Small Projects
           </Typography>
